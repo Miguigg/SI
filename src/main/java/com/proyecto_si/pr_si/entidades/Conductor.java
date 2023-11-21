@@ -38,20 +38,15 @@ public class Conductor implements Serializable{
     @Enumerated(EnumType.STRING)
     private NivelEducativo nivelEducativo;
 
-
-    @ManyToOne
-    private ParteSiniestro parteSiniestro;
-
     public Conductor(){
         /*En Pedido lo rellena? */
     }
 
-    public Conductor(String DNI, int anhoExp, String nombre, String sexo, ParteSiniestro parteSiniestro){
+    public Conductor(String DNI, int anhoExp, String nombre, String sexo){
         this.DNI = DNI;
         this.anhoExp = anhoExp;
         this.nombre = nombre;
         this.sexo = sexo;
-        this.parteSiniestro = parteSiniestro;
         this.nivelEducativo = NivelEducativo.SIN_ESTABLECER;//como se define luego?
     }
 
@@ -95,19 +90,9 @@ public class Conductor implements Serializable{
         this.nivelEducativo = nivelEducativo;
     }
 
-    public ParteSiniestro getParteSiniestro() {
-        return this.parteSiniestro;
-    }
-
-    public void setParteSiniestro(ParteSiniestro parteSiniestro) {
-        this.parteSiniestro = parteSiniestro;
-    }
-
-
     @Override
     public int hashCode() {
-        int hash = Objects.hashCode(this.DNI);
-        return hash;
+        return Objects.hashCode(this.DNI);
     }
 
     @Override
@@ -122,10 +107,6 @@ public class Conductor implements Serializable{
             return false;
         }
         final Conductor other = (Conductor) obj;
-        
-        if (!Objects.equals(this.parteSiniestro, other.parteSiniestro)) {
-            return false;
-        }
         
         if (!Objects.equals(this.DNI, other.DNI)) {
             return false;

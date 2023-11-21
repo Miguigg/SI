@@ -1,7 +1,7 @@
 package com.proyecto_si.pr_si.entidades;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 import java.util.Objects;
 
 import com.proyecto_si.pr_si.entidades.Enumerados.TipoVehiculo;
@@ -25,72 +25,60 @@ public class Vehiculo implements Serializable{
 
     @Id
     @NotNull
-    private String licence_plate;
+    private String licencePlate;
 
-    private String defecto_vehiculo;
+    private String defectoVehiculo;
 
     @Enumerated(EnumType.STRING)
-    private TipoVehiculo tipo_vehiculo;
+    private TipoVehiculo tipoVehiculo;
 
     @Temporal(TemporalType.DATE)
-    private Date fecha_matriculacion;
-
-    @ManyToOne
-    private ParteSiniestro parteSiniestro;
+    private Date fechaMatriculacion;
 
     public Vehiculo(){};
 
-    public Vehiculo(String licence_plate, String defecto_vehiculo, Date fecha_matriculacion , ParteSiniestro parteSiniestro){
-        this.defecto_vehiculo = defecto_vehiculo;
-        this.licence_plate = licence_plate;
-        this.fecha_matriculacion = fecha_matriculacion;//aqui se le mete la fecha asi o por parametro? porque no entiendo lo que hace en Pedido.java https://github.com/esei-si-dagss/pedidos-persistencia-23/blob/main/src/main/java/es/uvigo/mei/pedidos/entidades/Pedido.java
-        this.parteSiniestro = parteSiniestro;
-        this.tipo_vehiculo = TipoVehiculo.SIN_DEFINIR; //Esto como se define luego?
+    public Vehiculo(String licencePlate, String defectoVehiculo, Date fechaMatriculacion){
+        this.defectoVehiculo = defectoVehiculo;
+        this.licencePlate = licencePlate;
+        this.fechaMatriculacion = fechaMatriculacion;//aqui se le mete la fecha asi o por parametro? porque no entiendo lo que hace en Pedido.java https://github.com/esei-si-dagss/pedidos-persistencia-23/blob/main/src/main/java/es/uvigo/mei/pedidos/entidades/Pedido.java
+        this.tipoVehiculo = TipoVehiculo.SIN_DEFINIR; //Esto como se define luego?
     }
 
-    public String getLicence_plate() {
-        return this.licence_plate;
+    public String getlicencePlate() {
+        return this.licencePlate;
     }
 
-    public void setLicence_plate(String licence_plate) {
-        this.licence_plate = licence_plate;
+    public void setlicencePlate(String licencePlate) {
+        this.licencePlate = licencePlate;
     }
 
-    public String getDefecto_vehiculo() {
-        return this.defecto_vehiculo;
+    public String getdefectoVehiculo() {
+        return this.defectoVehiculo;
     }
 
-    public void setDefecto_vehiculo(String defecto_vehiculo) {
-        this.defecto_vehiculo = defecto_vehiculo;
+    public void setdefectoVehiculo(String defectoVehiculo) {
+        this.defectoVehiculo = defectoVehiculo;
     }
 
-    public TipoVehiculo getTipo_vehiculo() {
-        return this.tipo_vehiculo;
+    public TipoVehiculo gettipoVehiculo() {
+        return this.tipoVehiculo;
     }
 
-    public void setTipo_vehiculo(TipoVehiculo tipo_vehiculo) {
-        this.tipo_vehiculo = tipo_vehiculo;
+    public void settipoVehiculo(TipoVehiculo tipoVehiculo) {
+        this.tipoVehiculo = tipoVehiculo;
     }
 
-    public Date getFecha_matriculacion() {
-        return this.fecha_matriculacion;
+    public Date getfechaMatriculacion() {
+        return this.fechaMatriculacion;
     }
 
-    public void setFecha_matriculacion(Date fecha_matriculacion) {
-        this.fecha_matriculacion = fecha_matriculacion;
-    }
-
-    public ParteSiniestro getParteSiniestro() {
-        return this.parteSiniestro;
-    }
-
-    public void setParteSiniestro(ParteSiniestro parteSiniestro) {
-        this.parteSiniestro = parteSiniestro;
+    public void setfechaMatriculacion(Date fechaMatriculacion) {
+        this.fechaMatriculacion = fechaMatriculacion;
     }
 
     @Override
     public int hashCode() {
-        int hash = Objects.hashCode(this.licence_plate);
+        int hash = Objects.hashCode(this.licencePlate);
         return hash;
     }
 
@@ -105,13 +93,8 @@ public class Vehiculo implements Serializable{
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Vehiculo other = (Vehiculo) obj;
-        /*Esto seria necesario teniendo la matricula? */
-        if (!Objects.equals(this.parteSiniestro, other.parteSiniestro)) {
-            return false;
-        }
-        
-        if (!Objects.equals(this.licence_plate, other.licence_plate)) {
+        final Vehiculo other = (Vehiculo) obj;       
+        if (!Objects.equals(this.licencePlate, other.licencePlate)) {
             return false;
         }
         return true;
@@ -119,7 +102,7 @@ public class Vehiculo implements Serializable{
 
     @Override
     public String toString() {
-        return "Vehiculo{" + "Matricula=" + licence_plate + ", Fecha matricula=" + fecha_matriculacion  + '}';
+        return "Vehiculo{" + "Matricula=" + licencePlate + ", Fecha matricula=" + fechaMatriculacion  + '}';
     }
 
 }

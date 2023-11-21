@@ -1,13 +1,15 @@
 package com.proyecto_si.pr_si.entidades;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.Min;
@@ -39,14 +41,25 @@ public class Accidente implements Serializable{
     @Temporal(TemporalType.DATE)
     private Date fechaAccidente;
 
+    @OneToOne
+    ParteSiniestro parteSiniestro;
+
+    @OneToMany
+    DefinicionTipo definicionTipo;
+
+    @OneToMany
+    Condiciones condiciones;
 
     public Accidente (){}
 
-    public Accidente(double costeEstimado, String descripcionGravedad, Date fechaAccidente, String periodo){
+    public Accidente(double costeEstimado, String descripcionGravedad, Date fechaAccidente, String periodo, DefinicionTipo definicionTipo, ParteSiniestro parteSiniestro, Condiciones condiciones){
         this.costeEstimado = costeEstimado;
         this.descripcionGravedad = descripcionGravedad;
         this.fechaAccidente = fechaAccidente;
         this.periodo = periodo;
+        this.definicionTipo = definicionTipo;
+        this.parteSiniestro = parteSiniestro;
+        this.condiciones = condiciones;
     }
 
 
@@ -90,6 +103,29 @@ public class Accidente implements Serializable{
         this.periodo = periodo;
     }
 
+    public DefinicionTipo getDefinicionTipo(){
+        return this.definicionTipo;
+    }
+
+    public void setDefinicionTipo(DefinicionTipo definicionTipo){
+        this.definicionTipo = definicionTipo;
+    }
+
+    public ParteSiniestro getParteSiniestro(){
+        return this.parteSiniestro;
+    }
+
+    public void setParteSiniestro(ParteSiniestro parteSiniestro){
+        this.parteSiniestro = parteSiniestro;
+    }
+
+    public Condiciones getCondiciones(){
+        return this.condiciones;
+    }
+
+    public void setCondiciones(Condiciones condiciones){
+        this.condiciones = condiciones;
+    }
 
     public int hashCode() {
         if (this.id != null) {

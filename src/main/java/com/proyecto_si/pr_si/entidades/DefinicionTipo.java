@@ -10,7 +10,6 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotEmpty;
 
 /*
@@ -31,13 +30,9 @@ public class DefinicionTipo {
     @NotEmpty
     private String descripcion;
 
-    @ManyToOne
-    private Accidente accidente;
-
     public DefinicionTipo (){}
 
-    public DefinicionTipo(String descripcion, Accidente accidente){
-        this.accidente = accidente;
+    public DefinicionTipo(String descripcion){
         this.descripcion = descripcion;
         this.tipoAccidente = TipoAccidente.NO_DEFINIDO;
     }
@@ -67,14 +62,6 @@ public class DefinicionTipo {
         this.descripcion = descripcion;
     }
 
-    public Accidente getAccidente() {
-        return this.accidente;
-    }
-
-    public void setAccidente(Accidente accidente) {
-        this.accidente = accidente;
-    }
-
     @Override
     public int hashCode() {
         if (this.id != null) {
@@ -82,7 +69,6 @@ public class DefinicionTipo {
         }
         int hash = 5;
         hash = 31 * hash + Objects.hashCode(this.descripcion);
-        hash = 31 * hash + Objects.hashCode(this.accidente);
         hash = 31 * hash + Objects.hashCode(this.tipoAccidente);
 
         return hash;
@@ -104,12 +90,7 @@ public class DefinicionTipo {
         
         if (!Objects.equals(this.descripcion, other.descripcion)) {
             return false;
-        }
-        
-        if (!Objects.equals(this.accidente, other.accidente)) {
-            return false;
-        }
-        
+        }      
         if (!Objects.equals(this.tipoAccidente, other.tipoAccidente)) {
             return false;
         }

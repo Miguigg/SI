@@ -23,18 +23,15 @@ public class Condiciones {
     
     @NotEmpty
     private String nombreCondicion;
+    
     @NotEmpty
     private String descripcionCondicion;
 
-    @ManyToOne
-    private Accidente accidente;
-
     public Condiciones(){}
 
-    public Condiciones(String nombreCondicion, String descripcionCondicion, Accidente accidente){
+    public Condiciones(String nombreCondicion, String descripcionCondicion){
         this.nombreCondicion = nombreCondicion;
         this.descripcionCondicion = descripcionCondicion;
-        this.accidente = accidente;
         this.tipoCondicion = TipoCondicion.NO_DEFINIDO;
     }
 
@@ -71,14 +68,6 @@ public class Condiciones {
         this.descripcionCondicion = descripcionCondicion;
     }
 
-    public Accidente getAccidente() {
-        return this.accidente;
-    }
-
-    public void setAccidente(Accidente accidente) {
-        this.accidente = accidente;
-    }
-
     @Override
     public int hashCode() {
         if (this.id != null) {
@@ -88,7 +77,6 @@ public class Condiciones {
         hash = 35 * hash + Objects.hashCode(this.descripcionCondicion);
         hash = 35 * hash + Objects.hashCode(this.nombreCondicion);
         hash = 35 * hash + Objects.hashCode(this.tipoCondicion);
-        hash = 35 * hash + Objects.hashCode(this.accidente);
 
         return hash;
     }
@@ -111,10 +99,6 @@ public class Condiciones {
         }
         
         if (!Objects.equals(this.nombreCondicion, other.nombreCondicion)) {
-            return false;
-        }
-        
-        if (!Objects.equals(this.accidente, other.accidente)) {
             return false;
         }
         return true;

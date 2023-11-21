@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Pattern;
@@ -25,16 +26,20 @@ public class ParteSiniestro implements Serializable{
     @Pattern(regexp="^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$")
     private String horaFirmaParte;
 
-    @OneToOne
-    private Accidente accidente;
+    @OneToMany
+    private Vehiculo vehiculo;
+
+    @OneToMany
+    private Conductor conductor;
 
     public ParteSiniestro(){}
 
-    public ParteSiniestro(int numPasajeros, int numVehiculos, String horaFirmaParte, Accidente accidente){
+    public ParteSiniestro(int numPasajeros, int numVehiculos, String horaFirmaParte,Vehiculo vehiculo, Conductor conductor){
         this.numPasajeros = numPasajeros;
         this.numVehiculos = numVehiculos;
         this.horaFirmaParte = horaFirmaParte;
-        this.accidente = accidente;
+        this.vehiculo = vehiculo;
+        this.conductor = conductor;
     }
 
     public Long getId(){
@@ -67,6 +72,22 @@ public class ParteSiniestro implements Serializable{
 
     public void setHoraFirmaParte(String horaFirmaParte){
         this.horaFirmaParte = horaFirmaParte;
+    }
+
+    public Vehiculo getVehiculo(){
+        return this.vehiculo;
+    }
+
+    public void setVehiculo(Vehiculo vehiculo){
+        this.vehiculo = vehiculo;
+    }
+
+    public Conductor getConductor(){
+        return this.conductor;
+    }
+
+    public void setConductor(Conductor conductor){
+        this.conductor = conductor;
     }
 
 

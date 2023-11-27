@@ -47,9 +47,6 @@ public class Accidente implements Serializable{
 
     @OneToOne
     ParteSiniestro parteSiniestro;
-
-
-    
     
     @ManyToAny
     List<DefinicionTipo> definicionTipo;

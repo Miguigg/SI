@@ -13,12 +13,12 @@ import java.util.List;
 
 public interface VehiculoDAO extends JpaRepository<Vehiculo, String>{
 
-    public Vehiculo findBylicencePlate(String licencePlate);
+    public List<Vehiculo> findByLicencePlate(String licencePlate);
 
-    public List<Vehiculo> findBydefectoVehiculo(String defectoVehiculo);
+    public List<Vehiculo> findByDefectoVehiculo(String defectoVehiculo);
 
-    public List<Vehiculo> findByfechaMatriculacion(Date fechaMatriculacion);
+    public List<Vehiculo> findByFechaMatriculacion(Date fechaMatriculacion);
 
-    @Query("SELECT licencePlate FROM Vehiculo v WHERE v.defectoVehiculo LIKE %?1%")
-	public List<Vehiculo> findByPatrondefectoVehiculo(String patron);
+    @Query("SELECT v.licencePlate FROM Vehiculo v WHERE v.defectoVehiculo LIKE %?1%")
+	public List<String> findByPatrondefectoVehiculo(String patron);
 }

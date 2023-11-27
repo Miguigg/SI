@@ -2,12 +2,16 @@ package com.proyecto_si.pr_si.entidades;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
+
+import org.hibernate.annotations.ManyToAny;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Temporal;
@@ -44,15 +48,20 @@ public class Accidente implements Serializable{
     @OneToOne
     ParteSiniestro parteSiniestro;
 
-    @OneToMany
-    DefinicionTipo definicionTipo;
 
+    
+    
+    @ManyToAny
+    List<DefinicionTipo> definicionTipo;
+
+    
     @OneToMany
-    Condiciones condiciones;
+    @JoinColumn(name = "AccidenteId")
+    List<Condiciones> condiciones;
 
     public Accidente (){}
 
-    public Accidente(double costeEstimado, String descripcionGravedad, Date fechaAccidente, String periodo, DefinicionTipo definicionTipo, ParteSiniestro parteSiniestro, Condiciones condiciones){
+    public Accidente(double costeEstimado, String descripcionGravedad, Date fechaAccidente, String periodo, List<DefinicionTipo> definicionTipo, ParteSiniestro parteSiniestro, List<Condiciones> condiciones){
         this.costeEstimado = costeEstimado;
         this.descripcionGravedad = descripcionGravedad;
         this.fechaAccidente = fechaAccidente;
@@ -103,11 +112,11 @@ public class Accidente implements Serializable{
         this.periodo = periodo;
     }
 
-    public DefinicionTipo getDefinicionTipo(){
+    public List<DefinicionTipo> getDefinicionTipo(){
         return this.definicionTipo;
     }
 
-    public void setDefinicionTipo(DefinicionTipo definicionTipo){
+    public void setDefinicionTipo(List<DefinicionTipo> definicionTipo){
         this.definicionTipo = definicionTipo;
     }
 
@@ -119,11 +128,11 @@ public class Accidente implements Serializable{
         this.parteSiniestro = parteSiniestro;
     }
 
-    public Condiciones getCondiciones(){
+    public List<Condiciones> getCondiciones(){
         return this.condiciones;
     }
 
-    public void setCondiciones(Condiciones condiciones){
+    public void setCondiciones(List<Condiciones> condiciones){
         this.condiciones = condiciones;
     }
 

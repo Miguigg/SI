@@ -32,22 +32,22 @@ import java.util.Date;
 public class PrSiApplication implements CommandLineRunner {
 
 	@Autowired
-	AccidenteDAO familiaDAO;
+	AccidenteDAO accidenteDAO;
 
 	@Autowired
-	CondicionesDAO articuloDAO;
+	CondicionesDAO condicionesDAO;
 
 	@Autowired
-	ConductorDAO clienteDAO;
+	ConductorDAO conductorDAO;
 
 	@Autowired
-	DefinicionTipoDAO pedidoDAO;
+	DefinicionTipoDAO definicionTipoDAO;
 
 	@Autowired
-	ParteSiniestroDAO almacenDAO;
+	ParteSiniestroDAO parteSiniestroDAO;
 
 	@Autowired
-	VehiculoDAO articuloAlmacenDAO;
+	VehiculoDAO vehiculoDAO;
 
 	public static void main(String[] args) {
 		SpringApplication.run(PrSiApplication.class, args);
@@ -66,23 +66,24 @@ public class PrSiApplication implements CommandLineRunner {
 
 		DefinicionTipo definicionTipo = new DefinicionTipo("Se ha matado paco");
 		definicionTipo.setTipoAccidente(TipoAccidente.ATROPELLO);
-		definicionTipo = DefinicionTipoDAO.save(definicionTipo);
+		definicionTipo = definicionTipoDAO.save(definicionTipo);
 
 		Vehiculo v1 = new Vehiculo("5836PCT","Dirección torcida", date); 
 		v1.settipoVehiculo(TipoVehiculo.FURGON);
-		v1 = VehiculoDAO.save(v1);
+		v1 = vehiculoDAO.save(v1);
 
 		Conductor c1 = new Conductor("49707812A",7,"Paco","Hombre");
 		c1.setNivelEducativo(NivelEducativo.MEDIO);
 
 
 		ParteSiniestro p1 = new ParteSiniestro(3,2,"9:00",v1,c1);
-
+		p1 = parteSiniestroDAO.save(p1);
 
 		Condiciones co1 = new Condiciones("Mala luz","La luz del anochecer le cegó");
 		co1.setTipoCondicion(TipoCondicion.CONDICIONES_LUMINICAS);
-
+		co1 = condicionesDAO.save(co1);
 
 		Accidente a1 = new Accidente(1000.0,"muy grave",date,"AM",definicionTipo, p1, co1);
+		a1 = accidenteDAO.save(a1);
 	}
 }

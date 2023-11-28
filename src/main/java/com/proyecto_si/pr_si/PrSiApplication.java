@@ -84,6 +84,7 @@ public class PrSiApplication implements CommandLineRunner {
 		List<Conductor> listCondurtores = new ArrayList<>();
 		Conductor c1 = new Conductor("49707812A",7,"Paco","Hombre");
 		c1.setNivelEducativo(NivelEducativo.MEDIO);
+		c1 = conductorDAO.save(c1);
 		listCondurtores.add(c1);
 
 		ParteSiniestro p1 = new ParteSiniestro(3,2,"9:00",listVehiculo,listCondurtores);

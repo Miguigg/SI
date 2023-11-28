@@ -55,12 +55,6 @@ public class Accidente implements Serializable{
     //Definicion N:M con su tabla intermedia
     @ManyToMany(cascade = CascadeType.ALL)
     List<DefinicionTipo> definicionTipo;
-
-     @JoinTable(
-        name = "rel_accidente_definicionTipo",
-        joinColumns = @JoinColumn(name = "id", nullable = false),
-        inverseJoinColumns = @JoinColumn(name="id", nullable = false)
-    )    
     
     @OneToMany
     @JoinColumn(name = "AccidenteId")

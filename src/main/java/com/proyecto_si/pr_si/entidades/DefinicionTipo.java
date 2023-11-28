@@ -14,10 +14,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.validation.constraints.NotEmpty;
 
-/*
- * Queda en duda como funciona el enumerado
- * 
- */
 
 @Entity
 public class DefinicionTipo {

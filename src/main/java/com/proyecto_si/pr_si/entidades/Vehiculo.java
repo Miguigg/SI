@@ -10,15 +10,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.NotNull;
 import jakarta.persistence.Temporal;
-
-/*
- * Queda en duda como funciona la fecha y el enumerado
- * Duda en el equals, Si hay una PK como la matricula, hace falta comparar todos los atr
- */
 
 @Entity
 public class Vehiculo implements Serializable{

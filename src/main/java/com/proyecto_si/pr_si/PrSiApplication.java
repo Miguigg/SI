@@ -73,15 +73,20 @@ public class PrSiApplication implements CommandLineRunner {
 		definicionTipo = definicionTipoDAO.save(definicionTipo);
 		listTipos.add(definicionTipo);
 
+
+		List<Vehiculo> listVehiculo = new ArrayList<>();
 		Vehiculo v1 = new Vehiculo("5836PCT","Dirección torcida", date); 
 		v1.settipoVehiculo(TipoVehiculo.FURGON);
 		v1 = vehiculoDAO.save(v1);
+		listVehiculo.add(v1);
 
+
+		List<Conductor> listCondurtores = new ArrayList<>();
 		Conductor c1 = new Conductor("49707812A",7,"Paco","Hombre");
 		c1.setNivelEducativo(NivelEducativo.MEDIO);
+		listCondurtores.add(c1);
 
-
-		ParteSiniestro p1 = new ParteSiniestro(3,2,"9:00",v1,c1);
+		ParteSiniestro p1 = new ParteSiniestro(3,2,"9:00",listVehiculo,listCondurtores);
 		p1 = parteSiniestroDAO.save(p1);
 
 		List<Condiciones> listCondiciones = new ArrayList<>();

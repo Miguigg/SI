@@ -1,6 +1,7 @@
 package com.proyecto_si.pr_si.entidades;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -27,14 +28,14 @@ public class ParteSiniestro implements Serializable{
     private String horaFirmaParte;
 
     @OneToMany
-    private Vehiculo vehiculo;
+    private List<Vehiculo> vehiculo;
 
     @OneToMany
-    private Conductor conductor;
+    private List<Conductor> conductor;
 
     public ParteSiniestro(){}
 
-    public ParteSiniestro(int numPasajeros, int numVehiculos, String horaFirmaParte,Vehiculo vehiculo, Conductor conductor){
+    public ParteSiniestro(int numPasajeros, int numVehiculos, String horaFirmaParte, List<Vehiculo> vehiculo, List<Conductor> conductor){
         this.numPasajeros = numPasajeros;
         this.numVehiculos = numVehiculos;
         this.horaFirmaParte = horaFirmaParte;
@@ -74,22 +75,29 @@ public class ParteSiniestro implements Serializable{
         this.horaFirmaParte = horaFirmaParte;
     }
 
-    public Vehiculo getVehiculo(){
+    public List<Vehiculo> getVehiculo(){
         return this.vehiculo;
     }
 
-    public void setVehiculo(Vehiculo vehiculo){
+    public void setVehiculo(List<Vehiculo> vehiculo){
         this.vehiculo = vehiculo;
     }
 
-    public Conductor getConductor(){
+    public void addVehiculo(Vehiculo v){
+        this.vehiculo.add(v);
+    }
+
+    public List<Conductor> getConductor(){
         return this.conductor;
     }
 
-    public void setConductor(Conductor conductor){
+    public void setConductor(List<Conductor> conductor){
         this.conductor = conductor;
     }
 
+    public void addConductor(Conductor c){
+        this.conductor.add(c);
+    }
 
     @Override
     public int hashCode() {

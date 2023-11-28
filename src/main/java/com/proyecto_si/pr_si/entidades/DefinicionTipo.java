@@ -33,7 +33,7 @@ public class DefinicionTipo {
     private String descripcion;
 
 
-    @ManyToMany(mappedBy = "DefinicionTipo")
+    @ManyToMany(mappedBy = "id")
     List<Accidente> accidente;
 
     public DefinicionTipo (){}

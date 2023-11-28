@@ -1,5 +1,6 @@
 package com.proyecto_si.pr_si.entidades;
 
+import java.util.List;
 import java.util.Objects;
 
 import com.proyecto_si.pr_si.entidades.Enumerados.TipoAccidente;
@@ -10,6 +11,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.validation.constraints.NotEmpty;
 
 /*
@@ -29,6 +31,10 @@ public class DefinicionTipo {
 
     @NotEmpty
     private String descripcion;
+
+
+    @ManyToMany(mappedBy = "DefinicionTipo")
+    List<Accidente> accidente;
 
     public DefinicionTipo (){}
 
@@ -60,6 +66,14 @@ public class DefinicionTipo {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public List<Accidente> getAccidentes(){
+        return this.accidente;
+    } 
+
+    public void setAccidente(List<Accidente> accidentes){
+        this.accidente = accidentes;
     }
 
     @Override

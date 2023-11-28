@@ -7,11 +7,14 @@ import java.util.Objects;
 
 import org.hibernate.annotations.ManyToAny;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Temporal;
@@ -48,9 +51,16 @@ public class Accidente implements Serializable{
     @OneToOne
     ParteSiniestro parteSiniestro;
     
-    @ManyToAny
+
+    //Definicion N:M con su tabla intermedia
+    @ManyToMany(cascade = CascadeType.ALL)
     List<DefinicionTipo> definicionTipo;
 
+    @JoinTable(
+        name = "rel_accidente_definicionTipo",
+        joinColumns = @JoinColumn(name = "id", nullable = false),
+        inverseJoinColumns = @JoinColumn(name="id", nullable = false)
+    )    
     
     @OneToMany
     @JoinColumn(name = "AccidenteId")
@@ -58,7 +68,8 @@ public class Accidente implements Serializable{
 
     public Accidente (){}
 
-    public Accidente(double costeEstimado, String descripcionGravedad, Date fechaAccidente, String periodo, List<DefinicionTipo> definicionTipo, ParteSiniestro parteSiniestro, List<Condiciones> condiciones){
+    public Accidente(double costeEstimado, String descripcionGravedad, Date fechaAccidente, String periodo,
+     List<DefinicionTipo> definicionTipo, ParteSiniestro parteSiniestro, List<Condiciones> condiciones){
         this.costeEstimado = costeEstimado;
         this.descripcionGravedad = descripcionGravedad;
         this.fechaAccidente = fechaAccidente;
@@ -117,6 +128,10 @@ public class Accidente implements Serializable{
         this.definicionTipo = definicionTipo;
     }
 
+    public void addDefinicionTipo(DefinicionTipo definicionTipo){
+        this.definicionTipo.add(definicionTipo);
+    }
+
     public ParteSiniestro getParteSiniestro(){
         return this.parteSiniestro;
     }
@@ -131,6 +146,10 @@ public class Accidente implements Serializable{
 
     public void setCondiciones(List<Condiciones> condiciones){
         this.condiciones = condiciones;
+    }
+
+    public void addCondiciones(Condiciones condiciones){
+        this.condiciones.add(condiciones);
     }
 
     public int hashCode() {

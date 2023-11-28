@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import java.util.List;
 
 import com.proyecto_si.pr_si.daos.AccidenteDAO;
 import com.proyecto_si.pr_si.daos.CondicionesDAO;
@@ -25,6 +26,7 @@ import com.proyecto_si.pr_si.entidades.Enumerados.TipoAccidente;
 import com.proyecto_si.pr_si.entidades.Enumerados.TipoCondicion;
 import com.proyecto_si.pr_si.entidades.Enumerados.TipoVehiculo;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 
@@ -64,9 +66,12 @@ public class PrSiApplication implements CommandLineRunner {
 		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 		Date date = formatter.parse(date_string);
 
+
+		List<DefinicionTipo> listTipos = new ArrayList<>();
 		DefinicionTipo definicionTipo = new DefinicionTipo("Se ha matado paco");
 		definicionTipo.setTipoAccidente(TipoAccidente.ATROPELLO);
 		definicionTipo = definicionTipoDAO.save(definicionTipo);
+		listTipos.add(definicionTipo);
 
 		Vehiculo v1 = new Vehiculo("5836PCT","Dirección torcida", date); 
 		v1.settipoVehiculo(TipoVehiculo.FURGON);
@@ -79,11 +84,13 @@ public class PrSiApplication implements CommandLineRunner {
 		ParteSiniestro p1 = new ParteSiniestro(3,2,"9:00",v1,c1);
 		p1 = parteSiniestroDAO.save(p1);
 
+		List<Condiciones> listCondiciones = new ArrayList<>();
 		Condiciones co1 = new Condiciones("Mala luz","La luz del anochecer le cegó");
 		co1.setTipoCondicion(TipoCondicion.CONDICIONES_LUMINICAS);
 		co1 = condicionesDAO.save(co1);
+		listCondiciones.add(co1);
 
-		Accidente a1 = new Accidente(1000.0,"muy grave",date,"AM",definicionTipo, p1, co1);
+		Accidente a1 = new Accidente(1000.0,"muy grave",date,"AM",listTipos, p1, listCondiciones);
 		a1 = accidenteDAO.save(a1);
 	}
 }

@@ -62,7 +62,7 @@ public class PrSiApplication implements CommandLineRunner {
 	}
 
 	private void crearEntidades() throws ParseException {
-		String date_string = "11-09-2025";
+		/*String date_string = "11-09-2025";
 		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 		Date date = formatter.parse(date_string);
 
@@ -104,6 +104,6 @@ public class PrSiApplication implements CommandLineRunner {
 		listCondiciones.add(co1);
 
 		Accidente a1 = new Accidente(1300.0,"muy grave",date,"AM",listTipos, p1, listCondiciones);
-		a1 = accidenteDAO.save(a1);
+		a1 = accidenteDAO.save(a1);*/
 	}
 }

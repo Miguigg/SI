@@ -5,6 +5,7 @@ import java.util.Objects;
 
 import com.proyecto_si.pr_si.entidades.Enumerados.TipoAccidente;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -29,8 +30,11 @@ public class DefinicionTipo {
     private String descripcion;
 
 
-    @ManyToMany(mappedBy = "definicionTipo")
-    List<Accidente> accidente;
+/*     @ManyToMany(cascade = {
+        CascadeType.PERSIST,
+        CascadeType.MERGE
+} )
+    List<Accidente> accidente;*/
 
     public DefinicionTipo (){}
 
@@ -64,13 +68,13 @@ public class DefinicionTipo {
         this.descripcion = descripcion;
     }
 
-    public List<Accidente> getAccidentes(){
+    /*public List<Accidente> getAccidentes(){
         return this.accidente;
     } 
 
     public void setAccidente(List<Accidente> accidentes){
         this.accidente = accidentes;
-    }
+    }*/
 
     @Override
     public int hashCode() {

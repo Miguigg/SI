@@ -37,7 +37,7 @@ public class Accidente implements Serializable{
     private Long id;
 
     @Min(10)
-    private double costeEstimado;
+    private Double costeEstimado;
     
     @NotBlank
     private String descripcionGravedad;
@@ -53,7 +53,7 @@ public class Accidente implements Serializable{
     
 
     //Definicion N:M con su tabla intermedia
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany()
     List<DefinicionTipo> definicionTipo;
     
     @OneToMany
@@ -62,7 +62,7 @@ public class Accidente implements Serializable{
 
     public Accidente (){}
 
-    public Accidente(double costeEstimado, String descripcionGravedad, Date fechaAccidente, String periodo,
+    public Accidente(Double costeEstimado, String descripcionGravedad, Date fechaAccidente, String periodo,
      List<DefinicionTipo> definicionTipo, ParteSiniestro parteSiniestro, List<Condiciones> condiciones){
         this.costeEstimado = costeEstimado;
         this.descripcionGravedad = descripcionGravedad;
@@ -82,11 +82,11 @@ public class Accidente implements Serializable{
         this.id = id;
     }
 
-    public double getCosteEstimado() {
+    public Double getCosteEstimado() {
         return this.costeEstimado;
     }
 
-    public void setCosteEstimado(double costeEstimado) {
+    public void setCosteEstimado(Double costeEstimado) {
         this.costeEstimado = costeEstimado;
     }
 

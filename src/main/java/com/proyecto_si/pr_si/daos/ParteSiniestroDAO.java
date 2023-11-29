@@ -8,8 +8,8 @@ import com.proyecto_si.pr_si.entidades.ParteSiniestro;
 
 public interface ParteSiniestroDAO extends JpaRepository<ParteSiniestro, Long>{
     
-    public List<ParteSiniestro> findByNumPasajeros(int numPasajeros);
+    public List<ParteSiniestro> findByNumPasajeros(Integer numPasajeros);
 
-    public List<ParteSiniestro> findByNumVehiculos(int numVehiculos);
+    public List<ParteSiniestro> findByNumVehiculos(Integer numVehiculos);
 
 }

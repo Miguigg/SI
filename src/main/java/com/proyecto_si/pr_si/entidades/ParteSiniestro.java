@@ -7,6 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Pattern;
@@ -18,23 +19,25 @@ public class ParteSiniestro implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private int numPasajeros;
+    private Integer numPasajeros;
 
     @Min(1)
-    private int numVehiculos;
+    private Integer numVehiculos;
     // 	@Pattern(regexp="\\(\\d{3}\\)\\d{3}-\\d{4}")
     @Pattern(regexp="^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$")
     private String horaFirmaParte;
 
     @OneToMany
+    @JoinColumn(name = "ParteId")
     private List<Vehiculo> vehiculo;
 
     @OneToMany
+    @JoinColumn(name = "ParteId")
     private List<Conductor> conductor;
 
     public ParteSiniestro(){}
 
-    public ParteSiniestro(int numPasajeros, int numVehiculos, String horaFirmaParte, List<Vehiculo> vehiculo, List<Conductor> conductor){
+    public ParteSiniestro(Integer numPasajeros, Integer numVehiculos, String horaFirmaParte, List<Vehiculo> vehiculo, List<Conductor> conductor){
         this.numPasajeros = numPasajeros;
         this.numVehiculos = numVehiculos;
         this.horaFirmaParte = horaFirmaParte;
@@ -50,19 +53,19 @@ public class ParteSiniestro implements Serializable{
         this.id = id;
     }
 
-    public int getNumPasajeros(){
+    public Integer getNumPasajeros(){
         return numPasajeros;
     }
 
-    public void setNumPasajeros(int numPasajeros){
+    public void setNumPasajeros(Integer numPasajeros){
         this.numPasajeros =  numPasajeros;
     }
 
-    public int getNumVehiculos(){
+    public Integer getNumVehiculos(){
         return numVehiculos;
     }
 
-    public void setNumVehiculos(int numVehiculos){
+    public void setNumVehiculos(Integer numVehiculos){
         this.numVehiculos = numVehiculos;
     }
 

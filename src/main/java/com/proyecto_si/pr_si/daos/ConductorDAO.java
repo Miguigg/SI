@@ -12,6 +12,6 @@ public interface ConductorDAO extends JpaRepository<Conductor, String>{
 
     List<Conductor> findByDNI(String DNI);
 
-    List<Conductor> findByAnhoExp(int anhoExp);
+    List<Conductor> findByAnhoExp(Integer anhoExp);
 
 }

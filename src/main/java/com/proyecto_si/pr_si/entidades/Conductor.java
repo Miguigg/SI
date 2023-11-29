@@ -9,7 +9,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -27,7 +26,7 @@ public class Conductor implements Serializable{
     private String DNI;
 
     @Positive
-    private int anhoExp;
+    private Integer anhoExp;
     
     @NotEmpty
     private String nombre;
@@ -42,7 +41,7 @@ public class Conductor implements Serializable{
         /*En Pedido lo rellena? */
     }
 
-    public Conductor(String DNI, int anhoExp, String nombre, String sexo){
+    public Conductor(String DNI, Integer anhoExp, String nombre, String sexo){
         this.DNI = DNI;
         this.anhoExp = anhoExp;
         this.nombre = nombre;
@@ -58,11 +57,11 @@ public class Conductor implements Serializable{
         this.DNI = DNI;
     }
 
-    public int getAnhoExp() {
+    public Integer getAnhoExp() {
         return this.anhoExp;
     }
 
-    public void setAnhoExp(int anhoExp) {
+    public void setAnhoExp(Integer anhoExp) {
         this.anhoExp = anhoExp;
     }
 

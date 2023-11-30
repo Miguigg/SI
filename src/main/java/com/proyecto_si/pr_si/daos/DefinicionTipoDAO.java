@@ -9,6 +9,6 @@ import com.proyecto_si.pr_si.entidades.DefinicionTipo;
 
 public interface DefinicionTipoDAO extends JpaRepository<DefinicionTipo, Long>{
     
-    @Query("SELECT tipoAccidente FROM DefinicionTipo d WHERE d.descripcion LIKE %?1%")
+    @Query("SELECT descripcion FROM DefinicionTipo d WHERE d.descripcion LIKE %?1%")
 	public List<DefinicionTipo> findByPatronDescripcionCondicion(String patron);
 }

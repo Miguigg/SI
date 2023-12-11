@@ -9,7 +9,7 @@ import com.proyecto_si.pr_si.entidades.Accidente;
 
 public interface AccidenteDAO extends JpaRepository<Accidente, Long>{
     
-    @Query("SELECT fechaAccidente FROM Accidente a WHERE a.descripcionGravedad LIKE %?1%")
+    @Query("SELECT a FROM Accidente a WHERE a.descripcionGravedad LIKE %?1%")
 	public List<Accidente> findByPatronDescripcionGravedad(String patron);
 
     public List<Accidente> findByCosteEstimado(Double costeEstimado);

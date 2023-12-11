@@ -97,6 +97,7 @@ public class AccidenteController {
 		} 
 	}
 
+	// http://localhost:8080/api/accidentes?patron=%22grave%22
     @RequestMapping(params = "patron", method = RequestMethod.GET)
 	public ResponseEntity<List<Accidente>> findByPatronDescripcionGravedad(@RequestParam(name = "patron", required = true) String patron) {
 		List<Accidente> resultado = new ArrayList<>();

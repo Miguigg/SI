@@ -97,9 +97,9 @@ public class CondicionesController {
 		} 
 	}
 
-    //http://localhost:8080/api/condiciones?nombre=Mal%20estado%20de%20la%20carretera
+    //http://localhost:8080/api/condiciones?nombre=Mal%20estado%20de%20la%20carretera --- Nombre tiene que ser exacto
     @RequestMapping(params = "nombre", method = RequestMethod.GET)
-	public ResponseEntity<List<Condiciones>> findByPatronDescripcionGravedad(@RequestParam(name = "nombre", required = true) String nombre) {
+	public ResponseEntity<List<Condiciones>> findByNombreCondicion(@RequestParam(name = "nombre", required = true) String nombre) {
 		List<Condiciones> resultado = new ArrayList<>();
 		resultado = condicionesService.findByNombreCondicion(nombre);
 		return new ResponseEntity<>(resultado, HttpStatus.OK);

@@ -50,4 +50,10 @@ public class AccidenteServiceImp implements AccidenteService{
     public List<Accidente> findByCosteEstimado (Double costeEstimado){//
         return accidenteDAO.findByCosteEstimado(costeEstimado);
     }
+
+    @Override
+	@Transactional(readOnly = true)
+	public List<Accidente> buscarTodos() {
+		return accidenteDAO.findAll();
+	}
 }

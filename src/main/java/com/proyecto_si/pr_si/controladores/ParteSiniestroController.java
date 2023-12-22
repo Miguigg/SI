@@ -40,6 +40,14 @@ public class ParteSiniestroController {
     ParteSiniestroService parteSiniestroService;
 
 
+	@GetMapping()
+	public ResponseEntity<List<ParteSiniestro>> buscarTodos() {
+		List<ParteSiniestro> resultado = new ArrayList<>();
+		resultado = parteSiniestroService.buscarTodos();
+		return new ResponseEntity<>(resultado, HttpStatus.OK);
+	}
+
+
     @GetMapping(path = "{id}")
 	public ResponseEntity<ParteSiniestro> buscarPorId(@PathVariable("id") Long id) {
 		Optional<ParteSiniestro> pOptional = parteSiniestroService.buscarPorId(id);

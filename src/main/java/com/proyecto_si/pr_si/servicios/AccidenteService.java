@@ -12,4 +12,5 @@ public interface  AccidenteService {
     public Optional<Accidente> buscarPorId (Long id);
     public List<Accidente> findByPatronDescripcionGravedad(String patron);
     public List<Accidente> findByCosteEstimado(Double costeEstimado);
+    public List<Accidente> buscarTodos();
 }

@@ -52,4 +52,10 @@ public class ParteSiniestroServiceImp implements ParteSiniestroService {
     public List<ParteSiniestro> findByNumVehiculos (int numVehiculos){//
         return parteSiniestroDAO.findByNumVehiculos(numVehiculos);
     }
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<ParteSiniestro> buscarTodos() {
+		return parteSiniestroDAO.findAll();
+	}
 }

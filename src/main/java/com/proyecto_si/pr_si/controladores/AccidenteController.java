@@ -38,6 +38,15 @@ public class AccidenteController {
     @Autowired
     AccidenteService accidenteService;
 
+
+	@GetMapping()
+	public ResponseEntity<List<Accidente>> buscarTodos() {
+		List<Accidente> resultado = new ArrayList<>();
+		resultado = accidenteService.buscarTodos();
+		return new ResponseEntity<>(resultado, HttpStatus.OK);
+	}
+
+
     @GetMapping(path = "{id}")
 	public ResponseEntity<Accidente> buscarPorId(@PathVariable("id") Long id) {
 		Optional<Accidente> accidenteOpt = accidenteService.buscarPorId(id);

@@ -12,4 +12,5 @@ public interface ParteSiniestroService {
     public List<ParteSiniestro> findByNumPasajeros (int numPasajeros);
     public List<ParteSiniestro> findByNumVehiculos (int numVehiculos);
     public Optional<ParteSiniestro> buscarPorId(Long id);
+    public List<ParteSiniestro> buscarTodos();
 }

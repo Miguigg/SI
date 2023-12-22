@@ -11,4 +11,5 @@ public interface CondicionesService {
     public void eliminar (Condiciones condiciones);
     public Optional<Condiciones> buscarPorId (Long id);
     public List<Condiciones> findByNombreCondicion (String nombre);
+    public List<Condiciones> findByPatronDescripcionCondicion (String patron);
 }

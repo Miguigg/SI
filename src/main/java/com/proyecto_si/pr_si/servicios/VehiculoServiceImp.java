@@ -55,7 +55,7 @@ public class VehiculoServiceImp implements VehiculoService{
 
     @Override
 	@Transactional(readOnly = true)
-    public List<String> buscarPorPatroDefecto (String patron){
+    public List<Vehiculo> buscarPorPatroDefecto (String patron){
         return vehiculoDAO.findByPatrondefectoVehiculo(patron);
     }
 }

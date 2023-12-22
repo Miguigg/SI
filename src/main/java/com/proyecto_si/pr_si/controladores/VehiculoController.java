@@ -58,10 +58,11 @@ public class VehiculoController {
 		resultado = vehiculoService.buscarFechaMatriculacion(fechaMatriculacion);
 		return new ResponseEntity<>(resultado, HttpStatus.OK);
 	}
-
+	
+	//http://127.0.0.1:8080/api/vehiculos?patron=Frenos
     @RequestMapping(params = "patron", method = RequestMethod.GET)
-	public ResponseEntity<List<String>> buscarFechaMatriculacion(@RequestParam(name = "patron", required = true) String patron) {
-        List<String> resultado = new ArrayList<>();
+	public ResponseEntity<List<Vehiculo>> buscarPorPatroDefecto(@RequestParam(name = "patron", required = true) String patron) {
+        List<Vehiculo> resultado = new ArrayList<>();
 		resultado = vehiculoService.buscarPorPatroDefecto(patron);
 		return new ResponseEntity<>(resultado, HttpStatus.OK);
 	}

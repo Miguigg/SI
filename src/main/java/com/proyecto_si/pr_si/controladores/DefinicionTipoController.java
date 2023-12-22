@@ -93,7 +93,8 @@ public class DefinicionTipoController {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		} 
 	}
-
+	
+	//http://127.0.0.1:8080/api/definicion-tipo?def=matado
     @RequestMapping(params = "def", method = RequestMethod.GET)
 	public ResponseEntity<List<DefinicionTipo>> findByPatronDescripcionCondicion(@RequestParam(name = "def", required = true) String def) {
 		List<DefinicionTipo> resultado = new ArrayList<>();

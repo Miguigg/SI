@@ -44,4 +44,10 @@ public class CondicionesServiceImp implements CondicionesService  {
     public List<Condiciones> findByNombreCondicion (String nombre){//
         return condicionesDAO.findByNombreCondicion(nombre);
     }
+
+    @Override
+	@Transactional
+    public List<Condiciones> findByPatronDescripcionCondicion (String patron){//
+        return condicionesDAO.findByPatronDescripcionCondicion(patron);
+    }
 }

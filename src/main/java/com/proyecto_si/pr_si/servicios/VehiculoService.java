@@ -11,5 +11,5 @@ public interface VehiculoService {
     public List<Vehiculo> buscarPorMatricula (String licencePlate);
     public List<Vehiculo> buscarPorDefecto (String defectoVehiculo);
     public List<Vehiculo> buscarFechaMatriculacion (Date fechaMatriculacion);
-    public List<String> buscarPorPatroDefecto (String patron);
+    public List<Vehiculo> buscarPorPatroDefecto (String patron);
 }

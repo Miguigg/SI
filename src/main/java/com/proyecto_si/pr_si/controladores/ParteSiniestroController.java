@@ -74,6 +74,7 @@ public class ParteSiniestroController {
 				.toUri();
 	}
 
+	//http://127.0.0.1:8080/api/parteSiniestro?numVehiculos=2
     @RequestMapping(params = "numVehiculos", method = RequestMethod.GET)
 	public ResponseEntity<List<ParteSiniestro>> findByNumVehiculos(@RequestParam(name = "numVehiculos", required = true) int numVehiculos) {
 		List<ParteSiniestro> resultado = new ArrayList<>();
@@ -81,10 +82,11 @@ public class ParteSiniestroController {
 		return new ResponseEntity<>(resultado, HttpStatus.OK);
 	}
 
+	//http://127.0.0.1:8080/api/parteSiniestro?numPasajeros=3
     @RequestMapping(params = "numPasajeros", method = RequestMethod.GET)
 	public ResponseEntity<List<ParteSiniestro>> findByNumPasajeros(@RequestParam(name = "numPasajeros", required = true) int numPasajeros) {
 		List<ParteSiniestro> resultado = new ArrayList<>();
-		resultado = parteSiniestroService.findByNumVehiculos(numPasajeros);
+		resultado = parteSiniestroService.findByNumPasajeros(numPasajeros);
 		return new ResponseEntity<>(resultado, HttpStatus.OK);
 	}
 

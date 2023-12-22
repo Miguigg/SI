@@ -38,6 +38,7 @@ public class ConductorController {
     @Autowired
     ConductorService conductorService;
 
+	//http://127.0.0.1:8080/api/conductores/19706812A
     @GetMapping(path = "{dni}")
 	public ResponseEntity<Conductor> buscarPorDNI(@PathVariable("dni") String dni) {
 		Optional<Conductor> conductor = conductorService.buscarPorDNI(dni);

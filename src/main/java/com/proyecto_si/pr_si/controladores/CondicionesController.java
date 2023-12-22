@@ -25,6 +25,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.proyecto_si.pr_si.controladores.excepciones.ResourceNotFoundException;
 import com.proyecto_si.pr_si.controladores.excepciones.WrongParameterException;
+import com.proyecto_si.pr_si.entidades.Accidente;
 import com.proyecto_si.pr_si.entidades.Condiciones;
 import com.proyecto_si.pr_si.servicios.CondicionesService;
 
@@ -104,4 +105,13 @@ public class CondicionesController {
 		resultado = condicionesService.findByNombreCondicion(nombre);
 		return new ResponseEntity<>(resultado, HttpStatus.OK);
 	}
+
+	//http://127.0.0.1:8080/api/condiciones?patron=Salida
+	@RequestMapping(params = "patron", method = RequestMethod.GET)
+	public ResponseEntity<List<Condiciones>> findByPatronDescripcionCondicion(@RequestParam(name = "patron", required = true) String patron) {
+		List<Condiciones> resultado = new ArrayList<>();
+		resultado = condicionesService.findByPatronDescripcionCondicion(patron);
+		return new ResponseEntity<>(resultado, HttpStatus.OK);
+	}
+
 }

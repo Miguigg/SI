@@ -19,6 +19,6 @@ public interface VehiculoDAO extends JpaRepository<Vehiculo, String>{
 
     public List<Vehiculo> findByFechaMatriculacion(Date fechaMatriculacion);
 
-    @Query("SELECT v.licencePlate FROM Vehiculo v WHERE v.defectoVehiculo LIKE %?1%")
-	public List<String> findByPatrondefectoVehiculo(String patron);
+    @Query("SELECT v FROM Vehiculo v WHERE v.defectoVehiculo LIKE %?1%")
+	public List<Vehiculo> findByPatrondefectoVehiculo(String patron);
 }

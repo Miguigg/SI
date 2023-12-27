@@ -25,6 +25,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.proyecto_si.pr_si.controladores.excepciones.ResourceNotFoundException;
 import com.proyecto_si.pr_si.controladores.excepciones.WrongParameterException;
 import com.proyecto_si.pr_si.entidades.DefinicionTipo;
+import com.proyecto_si.pr_si.entidades.Vehiculo;
 import com.proyecto_si.pr_si.servicios.DefinicionTipoService;
 
 import jakarta.validation.Valid;
@@ -49,17 +50,10 @@ public class DefinicionTipoController {
     
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<DefinicionTipo> crear(@RequestBody @Valid DefinicionTipo definicionTipo) {
-		Long id = definicionTipo.getId();
-		if ((id != null)) {
-			Optional<DefinicionTipo> defOptional = definicionTipoService.findById(id);
+		DefinicionTipo nuevaDefinicionTipo = definicionTipoService.crear(definicionTipo);
+		URI uri = crearURIDefinicionTipo(nuevaDefinicionTipo);
 
-			if (defOptional.isEmpty()) {
-				DefinicionTipo nuevaDefinicionTipo = definicionTipoService.crear(definicionTipo);
-				URI uri = crearURIDefinicionTipo(nuevaDefinicionTipo);
-				return ResponseEntity.created(uri).body(nuevaDefinicionTipo);
-			}
-		}
-		throw new WrongParameterException("Falta indicar DNI");
+		return ResponseEntity.created(uri).body(nuevaDefinicionTipo);
 	}
 
 		private URI crearURIDefinicionTipo(DefinicionTipo nuevaDefinicionTipo) {

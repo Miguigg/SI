@@ -26,6 +26,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.proyecto_si.pr_si.controladores.excepciones.ResourceNotFoundException;
 import com.proyecto_si.pr_si.controladores.excepciones.WrongParameterException;
 import com.proyecto_si.pr_si.entidades.Conductor;
+import com.proyecto_si.pr_si.entidades.Vehiculo;
 import com.proyecto_si.pr_si.servicios.ConductorService;
 
 import jakarta.validation.Valid;
@@ -86,17 +87,10 @@ public class ConductorController {
 
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Conductor> crear(@RequestBody @Valid Conductor conductor) {
-		String dni = conductor.getDNI();
-		if ((dni != null) && !dni.isBlank()) {
-			Optional<Conductor> conductorOptional = conductorService.buscarPorDNI(dni);
+		Conductor nuevoConductor = conductorService.crear(conductor);
+		URI uri = crearURICliente(nuevoConductor);
 
-			if (conductorOptional.isEmpty()) {
-				Conductor nuevoConductor = conductorService.crear(conductor);
-				URI uri = crearURICliente(nuevoConductor);
-				return ResponseEntity.created(uri).body(nuevoConductor);
-			}
-		}
-		throw new WrongParameterException("Falta indicar DNI");
+		return ResponseEntity.created(uri).body(nuevoConductor);
 	}
 
 		private URI crearURICliente(Conductor conductor) {

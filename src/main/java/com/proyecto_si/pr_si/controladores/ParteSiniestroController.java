@@ -62,17 +62,10 @@ public class ParteSiniestroController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<ParteSiniestro> crear(@RequestBody @Valid ParteSiniestro parteSiniestro) {
-		Long id = parteSiniestro.getId();
-		if ((id != null)) {
-			Optional<ParteSiniestro> parteOptional = parteSiniestroService.buscarPorId(id);
+		ParteSiniestro nuevoParteSiniestro = parteSiniestroService.crear(parteSiniestro);
+		URI uri = crearURIParte(nuevoParteSiniestro);
 
-			if (parteOptional.isEmpty()) {
-				ParteSiniestro nuevoParte = parteSiniestroService.crear(parteSiniestro);
-				URI uri = crearURIParte(nuevoParte);
-				return ResponseEntity.created(uri).body(nuevoParte);
-			}
-		}
-		throw new WrongParameterException("Falta parametro clave");
+		return ResponseEntity.created(uri).body(nuevoParteSiniestro);
 	}
 
 		private URI crearURIParte(ParteSiniestro parteSiniestro) {

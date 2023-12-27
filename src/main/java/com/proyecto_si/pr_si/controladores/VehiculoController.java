@@ -97,17 +97,10 @@ public class VehiculoController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Vehiculo> crear(@RequestBody @Valid Vehiculo vehiculo) {
-		String licencePlate = vehiculo.getlicencePlate();
-		if ((licencePlate != null) && !licencePlate.isBlank()) {
-			List <Vehiculo> vehiculos = vehiculoService.buscarPorMatricula(licencePlate);
+		Vehiculo nuevoVehiculo = vehiculoService.crear(vehiculo);
+		URI uri = crearURIVehiculo(nuevoVehiculo);
 
-			if (vehiculos.isEmpty()) {
-				Vehiculo nuevoVehiculo = vehiculoService.crear(vehiculo);
-				URI uri = crearURIVehiculo(nuevoVehiculo);
-				return ResponseEntity.created(uri).body(nuevoVehiculo);
-			}
-		}
-		throw new WrongParameterException("Falta indicar DNI");
+		return ResponseEntity.created(uri).body(nuevoVehiculo);
 	}
 
 		private URI crearURIVehiculo(Vehiculo v) {

@@ -27,6 +27,7 @@ import com.proyecto_si.pr_si.controladores.excepciones.ResourceNotFoundException
 import com.proyecto_si.pr_si.controladores.excepciones.WrongParameterException;
 import com.proyecto_si.pr_si.entidades.Accidente;
 import com.proyecto_si.pr_si.entidades.Condiciones;
+import com.proyecto_si.pr_si.entidades.Vehiculo;
 import com.proyecto_si.pr_si.servicios.CondicionesService;
 
 
@@ -52,18 +53,10 @@ public class CondicionesController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Condiciones> crear(@RequestBody @Valid Condiciones condiciones) {
-		Long id = condiciones.getId();
-		if ((id != null)) {
-			Optional<Condiciones> cOptional = condicionesService.buscarPorId(id);
+		Condiciones nuevoCondiciones = condicionesService.crear(condiciones);
+		URI uri = crearURICondicion(nuevoCondiciones);
 
-			if (cOptional.isEmpty()) {
-				Condiciones nuevaCondicion = condicionesService.crear(condiciones);
-				URI uri = crearURICondicion(nuevaCondicion);
-				return ResponseEntity.created(uri).body(nuevaCondicion);
-			}
-		}
-		throw new WrongParameterException("Falta indicar id");
-	}
+		return ResponseEntity.created(uri).body(nuevoCondiciones);	}
 
 		private URI crearURICondicion(Condiciones c) {
 		return ServletUriComponentsBuilder.fromCurrentRequestUri()

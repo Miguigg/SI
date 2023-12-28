@@ -24,8 +24,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.proyecto_si.pr_si.controladores.excepciones.ResourceNotFoundException;
-import com.proyecto_si.pr_si.controladores.excepciones.WrongParameterException;
-import com.proyecto_si.pr_si.entidades.Conductor;
 import com.proyecto_si.pr_si.entidades.Vehiculo;
 import com.proyecto_si.pr_si.servicios.VehiculoService;
 
@@ -37,6 +35,13 @@ import jakarta.validation.Valid;
 public class VehiculoController {
     @Autowired
     VehiculoService vehiculoService;
+
+	@GetMapping()
+	public ResponseEntity<List<Vehiculo>> buscarTodos() {
+		List<Vehiculo> resultado = new ArrayList<>();
+		resultado = vehiculoService.buscarTodos();
+		return new ResponseEntity<>(resultado, HttpStatus.OK);
+	}
 
     @GetMapping(path = "{licencePlate}")
 	public ResponseEntity<List<Vehiculo>> buscarPorMatricula(@PathVariable("licencePlate") String licencePlate) {

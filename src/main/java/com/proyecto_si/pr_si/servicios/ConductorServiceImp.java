@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.proyecto_si.pr_si.daos.ConductorDAO;
 import com.proyecto_si.pr_si.entidades.Conductor;
+import com.proyecto_si.pr_si.entidades.ParteSiniestro;
 
 @Service
 public class ConductorServiceImp implements ConductorService {
@@ -43,5 +44,11 @@ public class ConductorServiceImp implements ConductorService {
 	@Transactional(readOnly = true)
 	public List<Conductor> buscarPorAnho(int anhoExp) {
 		return conductorDAO.findByAnhoExp(anhoExp);
+	}
+
+    @Override
+	@Transactional(readOnly = true)
+	public List<Conductor> buscarTodos() {
+		return conductorDAO.findAll();
 	}
 }

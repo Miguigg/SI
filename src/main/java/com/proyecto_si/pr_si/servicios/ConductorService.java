@@ -11,4 +11,5 @@ public interface ConductorService {
     public void eliminar (Conductor conductor);
     public Optional<Conductor> buscarPorDNI (String dni);
     public List<Conductor> buscarPorAnho (int anhoExp);
+    public List<Conductor> buscarTodos ();
 }

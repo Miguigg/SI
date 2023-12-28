@@ -26,6 +26,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.proyecto_si.pr_si.controladores.excepciones.ResourceNotFoundException;
 import com.proyecto_si.pr_si.controladores.excepciones.WrongParameterException;
 import com.proyecto_si.pr_si.entidades.Conductor;
+import com.proyecto_si.pr_si.entidades.ParteSiniestro;
 import com.proyecto_si.pr_si.entidades.Vehiculo;
 import com.proyecto_si.pr_si.servicios.ConductorService;
 
@@ -39,6 +40,14 @@ public class ConductorController {
     @Autowired
     ConductorService conductorService;
 
+
+
+		@GetMapping()
+	public ResponseEntity<List<Conductor>> buscarTodos() {
+		List<Conductor> resultado = new ArrayList<>();
+		resultado = conductorService.buscarTodos();
+		return new ResponseEntity<>(resultado, HttpStatus.OK);
+	}
 	//http://127.0.0.1:8080/api/conductores/19706812A
     @GetMapping(path = "{dni}")
 	public ResponseEntity<Conductor> buscarPorDNI(@PathVariable("dni") String dni) {

@@ -8,6 +8,8 @@ import com.proyecto_si.pr_si.entidades.Enumerados.NivelEducativo;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -21,7 +23,11 @@ import jakarta.validation.constraints.Positive;
 
 @Entity
 public class Conductor implements Serializable{
+    
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @NotNull
     private String DNI;
 
@@ -46,7 +52,15 @@ public class Conductor implements Serializable{
         this.anhoExp = anhoExp;
         this.nombre = nombre;
         this.sexo = sexo;
-        this.nivelEducativo = NivelEducativo.SIN_ESTABLECER;//como se define luego?
+        this.nivelEducativo = NivelEducativo.SIN_ESTABLECER;
+    }
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getDNI() {

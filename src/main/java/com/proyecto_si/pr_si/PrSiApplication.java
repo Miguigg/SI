@@ -1,13 +1,13 @@
 package com.proyecto_si.pr_si;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import java.util.List;
+
 
 import com.proyecto_si.pr_si.daos.AccidenteDAO;
 import com.proyecto_si.pr_si.daos.CondicionesDAO;
@@ -15,20 +15,6 @@ import com.proyecto_si.pr_si.daos.ConductorDAO;
 import com.proyecto_si.pr_si.daos.DefinicionTipoDAO;
 import com.proyecto_si.pr_si.daos.ParteSiniestroDAO;
 import com.proyecto_si.pr_si.daos.VehiculoDAO;
-import com.proyecto_si.pr_si.entidades.Accidente;
-import com.proyecto_si.pr_si.entidades.Condiciones;
-import com.proyecto_si.pr_si.entidades.Conductor;
-import com.proyecto_si.pr_si.entidades.DefinicionTipo;
-import com.proyecto_si.pr_si.entidades.ParteSiniestro;
-import com.proyecto_si.pr_si.entidades.Vehiculo;
-import com.proyecto_si.pr_si.entidades.Enumerados.NivelEducativo;
-import com.proyecto_si.pr_si.entidades.Enumerados.TipoAccidente;
-import com.proyecto_si.pr_si.entidades.Enumerados.TipoCondicion;
-import com.proyecto_si.pr_si.entidades.Enumerados.TipoVehiculo;
-
-import java.util.ArrayList;
-import java.util.Date;
-
 
 @SpringBootApplication
 public class PrSiApplication implements CommandLineRunner {

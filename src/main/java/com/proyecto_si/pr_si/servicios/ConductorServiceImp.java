@@ -37,7 +37,7 @@ public class ConductorServiceImp implements ConductorService {
     @Override
 	@Transactional(readOnly = true)
 	public Optional<Conductor> buscarPorDNI(String dni) {
-		return conductorDAO.findById(dni);
+		return conductorDAO.findByDNI(dni);
 	}
 
     @Override

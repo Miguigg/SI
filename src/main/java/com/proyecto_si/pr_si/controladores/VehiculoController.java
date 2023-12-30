@@ -57,8 +57,8 @@ public class VehiculoController {
 		return new ResponseEntity<>(resultado, HttpStatus.OK);
 	}
 
-    @GetMapping(path = "{fechaMatriculacion}")
-	public ResponseEntity<List<Vehiculo>> buscarFechaMatriculacion(@PathVariable("fechaMatriculacion") Date fechaMatriculacion) {
+    @RequestMapping(params = "{fechaMatriculacion}", method = RequestMethod.GET)
+	public ResponseEntity<List<Vehiculo>> buscarFechaMatriculacion(@RequestParam(name = "fechaMatriculacion", required = true) Date fechaMatriculacion) {
         List<Vehiculo> resultado = new ArrayList<>();
 		resultado = vehiculoService.buscarFechaMatriculacion(fechaMatriculacion);
 		return new ResponseEntity<>(resultado, HttpStatus.OK);
@@ -75,7 +75,7 @@ public class VehiculoController {
 
     
 	@PutMapping(path = "{licencePlate}", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Vehiculo> modificar(@PathVariable("licencePlate") String licencePlate, @RequestBody @Valid Vehiculo vehiculo) {
+	public ResponseEntity<Vehiculo> modificar(@PathVariable String licencePlate, @RequestBody @Valid Vehiculo vehiculo) {
 		List<Vehiculo> vehiculos = vehiculoService.buscarPorMatricula(licencePlate);
 
 		if (vehiculos.isEmpty()) {
